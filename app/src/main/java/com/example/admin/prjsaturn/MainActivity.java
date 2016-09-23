@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_task, container, false);
                     break;
-
             }
             return rootView;
         }
