@@ -102,9 +102,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            int sNum = getArguments().getInt(ARG_SECTION_NUMBER);
+            View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+            switch (sNum) {
+                case 1:
+                    rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+                    break;
+                case 2:
+                    rootView = inflater.inflate(R.layout.fragment_group, container, false);
+                    break;
+                case 3:
+                    rootView = inflater.inflate(R.layout.fragment_task, container, false);
+                    break;
+
+            }
             return rootView;
         }
     }
@@ -136,11 +147,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Profile";
                 case 1:
-                    return "SECTION 2";
+                    return "Group";
                 case 2:
-                    return "SECTION 3";
+                    return "Task";
             }
             return null;
         }
