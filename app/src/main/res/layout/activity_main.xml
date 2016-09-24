@@ -15,10 +15,16 @@
         android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+        <ImageView
+            android:layout_width="93dp"
+            android:layout_height="95dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:id="@+id/imageView" />
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="17dp"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
@@ -27,10 +33,80 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Мой доход - 63000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textSize="24sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="204dp" />
+
+        <TextView
+            android:text="Батл с ФИО. Мой результат - 85%"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:id="@+id/textView11"
+            android:textSize="24sp"
+            android:layout_below="@+id/textView8"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Квест с ФИО. Мой результат - 85%"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:id="@+id/textView13"
+            android:textSize="23sp"
+            android:layout_below="@+id/textView11"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Фамилия ИО"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12"
+            android:textSize="30sp"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/background_light"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/btn_star_big_off"
+            android:layout_below="@+id/textView12"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_marginTop="21dp"
+            android:id="@+id/imageView6" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/btn_star_big_off"
+            android:id="@+id/imageView5"
+            android:layout_alignTop="@+id/imageView6"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Моё достижение в командном зачёте - 40%"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:id="@+id/textView9"
+            android:textSize="23sp"
+            android:layout_below="@+id/textView13"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignStart="@+id/textView13" />
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
