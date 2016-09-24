@@ -34,7 +34,7 @@ switch ($method) {
 		while($r = mysql_fetch_assoc($query)) {
 		    $rows[] = $r;
 		}
-		die(json_encode($rows)[0]);
+		die(json_encode($rows));
 		break;
 	case 'getUserAchievements':
 		$id = $_GET['id'] || $auth_id;
@@ -54,7 +54,7 @@ switch ($method) {
 		while($r = mysql_fetch_assoc($query)) {
 		    $rows[] = $r;
 		}
-		die(json_encode($rows)[0]);
+		die(json_encode($rows));
 		break;	
 	default:
 		json_err("Incorrect method name!");
