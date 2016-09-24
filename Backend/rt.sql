@@ -6,13 +6,14 @@ CREATE TABLE users (
 	first_name VARCHAR(40) NOT NULL,
 	last_name VARCHAR(40) NOT NULL,
 	middle_name VARCHAR(40) NOT NULL,
-	income DECIMAL(15,2) NOT NULL,
-	xp INT UNSIGNED NOT NULL,
-	new_clients INT UNSIGNED NOT NULL,
-	is_admin BOOLEAN NOT NULL
+	income DECIMAL(15,2) DEFAULT 0.00 NOT NULL,
+	xp INT UNSIGNED DEFAULT 0 NOT NULL,
+	new_clients INT UNSIGNED DEFAULT 0 NOT NULL,
+	is_admin BOOLEAN DEFAULT 0 NOT NULL
 );
 CREATE TABLE achievements (
 	a_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	PRIMARY KEY (a_id),
 	a_name TINYTEXT NOT NULL,
 	a_description TEXT NOT NULL
 );
@@ -34,7 +35,8 @@ CREATE TABLE battles (
 	PRIMARY KEY (battle_id),
 	sender INT UNSIGNED NOT NULL,
 	receiver INT UNSIGNED NOT NULL,
-	condition BOOLEAN NOT NULL
+	start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	end_date TIMESTAMP NOT NULL
 );
 -- condition - 1 значит по доходу, 0 значит по новоиспечённым клиентам
 
