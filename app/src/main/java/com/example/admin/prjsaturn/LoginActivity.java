@@ -30,9 +30,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -182,11 +189,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
+
+
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
+
+
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -195,12 +206,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
 
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() >= 4;
     }
 
     /**
@@ -293,6 +304,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
+    static String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -309,14 +325,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            String url = "http://projectsaturn.tk.host1512310.serv66.hostland.pro/api.php";
+            String charset = "UTF-16";
 
+            String query = String.format("login=%s&pass=%s&method=getUserInfo",
+                    mEmail,
+                    mPassword);
+            String TSTR;
+            URLConnection connection;
+            InputStream response;
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                connection = new URL(url + "?" + query).openConnection();
+                connection.setRequestProperty("Accept-Charset", charset);
+                response = connection.getInputStream();
+
+                TSTR = convertStreamToString(response);
+                if(!(TSTR.lastIndexOf("error")!=0))
+                {
+                    return false;
+                }
+            }catch(java.io.IOException e){};
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");

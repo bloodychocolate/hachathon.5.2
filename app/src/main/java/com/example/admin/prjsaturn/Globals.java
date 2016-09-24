@@ -7,12 +7,17 @@ import android.app.Application;
  */
 
 public class Globals extends Application {
-    public User local_user;
+    private User local_user;
+    private String username;
+    private String password;
 
-    public void setLocalUser(User user)
-    {
-        this.local_user = user;
-    }
+    public void setLocalUser(User user){this.local_user = user;}
+    public User getLocalUser(){return this.local_user;}
 
-    public User getLocalUser(){return local_user;}
+    public void setLocUsername(String username){this.username = username;}
+    public String getLocUsername(){return this.username;}
+
+    public void setLocPassword(String password){this.password = password;}
+    public String getLocPassword(){return this.password;}
+
 }
