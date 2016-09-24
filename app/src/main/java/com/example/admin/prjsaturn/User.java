@@ -1,35 +1,45 @@
 package com.example.admin.prjsaturn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
-    int id;
-    String name;
+    int user_id;
+    String first_name;
+    String last_name;
+    String middle_name;
     String group;
     int xp;
     boolean isAdmin;
+    List<Achievment> achievements = new ArrayList<Achievment>();
 
-    public User(int id, String name, String group, int XP, boolean isAdmin) {
-        this.id = id;
-        this.name = name;
+
+    public User(int user_id, String first_name, String last_name, String middle_name, String group, int XP, boolean isAdmin) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.middle_name = middle_name;
         this.group = group;
         this.xp = XP;
         this.isAdmin = isAdmin;
+        this.achievements = achievements;
     }
 
     public int getID() {
-        return this.id;
+        return this.user_id;
     }
 
-    public void setID(int id) {
-        this.id = id;
-    }
+    /*public void setID(int id) {
+        this.user_id = user_id;
+    }*/
 
     public String getName() {
-        return this.name;
+        return this.last_name + " " + this.first_name + " " + this.middle_name;
     }
 
-    public void set_name(String _name) {
+    /*public void set_name(String _name) {
         this.name = _name;
-    }
+    }*/
 
     String getGroup() {
         return this.group;

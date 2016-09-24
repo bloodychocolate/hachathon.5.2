@@ -6,23 +6,6 @@
     tools:context="layout.ProfileFragment">
 
 
-    <TextView
-        android:text="Рейтинг отдела по работе с гос. заказчиками"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
-        android:id="@+id/textView4"
-        android:textStyle="normal|bold"
-        android:textSize="20dp"
-        android:textAlignment="viewStart"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,13 +25,39 @@
     </ScrollView>
 
     <TextView
+        android:text="Ваши батлы"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Фамилия И.О."
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold"
+        android:textSize="20dp"
+        android:textAlignment="viewStart"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Вы против"
         android:id="@+id/textView8"
         android:textSize="20dp"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:id="@+id/textView9"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/textView8"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
 </RelativeLayout>

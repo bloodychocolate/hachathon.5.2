@@ -32,6 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -318,6 +321,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mEmail;
         private final String mPassword;
 
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -332,6 +336,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     mEmail,
                     mPassword);
             String TSTR;
+            //превращаем json  в объект
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+           // User local_user = gson.fromJson(TSTR, User.class);
+
+
             URLConnection connection;
             InputStream response;
             try {
