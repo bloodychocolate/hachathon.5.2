@@ -1,36 +1,67 @@
 <?php
 $db_host = 'localhost';
 $db_login = 'host1512310';
-$db_pass = 'nope :^)';
-$db_name = 'host1512310_rt'
+$db_pass = '2618323e';
+$db_name = 'host1512310_rt';
 ////////////////////////////
 ///
 // http://host/api.php?login={LOGIN}&pass={PASS}&method={METHOD_NAME};
 
 function json_err($msg) {
-	die("{'error':'".addslashes($msg)."'");
+	die("{'error':'".addslashes($msg)."'}");
 }
 
 if (!isset($_GET['login']) || !isset($_GET['pass']) || !isset($_GET['method']))
 	json_err("Incorrect request!");
 
-$login = mysql_real_escape_string($_GET['login']);
-$pass = mysql_real_escape_string($_GET['pass']);
+$login = $_GET['login'];
+$pass = $_GET['pass'];
 $method = $_GET['method'];
 
 if (!mysql_connect($db_host, $db_login, $db_pass) || !mysql_select_db($db_name))
 	json_err("Can't connect to DB!");
 
-$check_auth = mysql_query("SELECT * FROM $db_name WHERE login = '$login' AND pass = '$pass' LIMIT 1");
+$check_auth = mysql_query("SELECT * FROM users WHERE login = '$login' AND password = '$pass'");
 if (mysql_num_rows($check_auth) == 0)
 	json_err("Incorrect login or password!");
+$auth_id = mysql_result($check_auth, 0);
 
 switch ($method) {
 	case 'getUserInfo':
+		$idd = $_GET['id'];
+		if (!isset($_GET['id'])) 
+			$idd = $auth_id; //ЕБУЧАЯ БЫДЛЯЦКАЯ ПЫХА!!!
+		$query = mysql_query("SELECT * FROM users WHERE user_id = '$idd'");
+		$rows = array();
+		while($r = mysql_fetch_assoc($query)) {
+		    $rows[] = $r;
+		}
+		die(json_encode($rows));
+		break;
+	case 'getUserAchievements':
+		$idd = $_GET['id'];
+		if (!isset($_GET['id'])) 
+			$idd = $auth_id; //ЕБУЧАЯ БЫДЛЯЦКАЯ ПЫХА!!!
+		$query = mysql_query("SELECT * FROM user_achievements WHERE u_id = '$idd'");
+		$rows = array();
+		while($r = mysql_fetch_assoc($query)) {
+		    $rows[] = $r;
+		}
+		die(json_encode($rows));
+		break;
+	case 'getAchievementInfo':
 		if (!isset($_GET['id']))
-			json_err("Incorrect request!");
-		$id = $_GET['id'];
-		$query = mysql_query("SELECT * FROM $db_name WHERE user_id = '$id' ")
+			json_err("$method must have the 'id' argument.");
+		$idd = $_GET['id'];
+		$query = mysql_query("SELECT * FROM achievements WHERE a_id = '$idd'");
+		$rows = array();
+		while($r = mysql_fetch_assoc($query)) {
+		    $rows[] = $r;
+		}
+		die(json_encode($rows));
+		break;	
+	default:
+		json_err("Incorrect method name!");
+		break;
 }
-
 ?>
