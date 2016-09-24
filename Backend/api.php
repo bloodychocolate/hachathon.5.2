@@ -28,8 +28,10 @@ $auth_id = mysql_result($check_auth, 0);
 
 switch ($method) {
 	case 'getUserInfo':
-		$id = $_GET['id'] || $auth_id;
-		$query = mysql_query("SELECT * FROM users WHERE user_id = '$id'");
+		$idd = $_GET['id'];
+		if (!isset($_GET['id'])) 
+			$idd = $auth_id; //ЕБУЧАЯ БЫДЛЯЦКАЯ ПЫХА!!!
+		$query = mysql_query("SELECT * FROM users WHERE user_id = '$idd'");
 		$rows = array();
 		while($r = mysql_fetch_assoc($query)) {
 		    $rows[] = $r;
@@ -37,8 +39,10 @@ switch ($method) {
 		die(json_encode($rows));
 		break;
 	case 'getUserAchievements':
-		$id = $_GET['id'] || $auth_id;
-		$query = mysql_query("SELECT * FROM user_achievements WHERE u_id = '$id'");
+		$idd = $_GET['id'];
+		if (!isset($_GET['id'])) 
+			$idd = $auth_id; //ЕБУЧАЯ БЫДЛЯЦКАЯ ПЫХА!!!
+		$query = mysql_query("SELECT * FROM user_achievements WHERE u_id = '$idd'");
 		$rows = array();
 		while($r = mysql_fetch_assoc($query)) {
 		    $rows[] = $r;
@@ -48,8 +52,8 @@ switch ($method) {
 	case 'getAchievementInfo':
 		if (!isset($_GET['id']))
 			json_err("$method must have the 'id' argument.");
-		$id = $_GET['id'];
-		$query = mysql_query("SELECT * FROM achievements WHERE a_id = '$id'");
+		$idd = $_GET['id'];
+		$query = mysql_query("SELECT * FROM achievements WHERE a_id = '$idd'");
 		$rows = array();
 		while($r = mysql_fetch_assoc($query)) {
 		    $rows[] = $r;
