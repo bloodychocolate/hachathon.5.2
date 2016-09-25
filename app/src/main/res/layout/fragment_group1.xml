@@ -4,7 +4,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="layout.ProfileFragment">
+tools:context="layout.ProfileFragment"
+    android:background="@android:color/background_light">
 
 
     <ScrollView
@@ -23,6 +24,15 @@ tools:context="layout.ProfileFragment">
         </TableLayout>
     </ScrollView>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ggg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/imageView5" />
+
     <TextView
         android:text="Рейтинг отдела активных продаж:"
         android:layout_width="wrap_content"
@@ -30,9 +40,9 @@ tools:context="layout.ProfileFragment">
         android:id="@+id/textView4"
         android:textStyle="normal|bold"
         android:textSize="20dp"
-        android:textAlignment="viewStart"
-        android:layout_marginTop="12dp"
+        android:textAlignment="center"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/imageView5"
+        android:layout_toStartOf="@+id/imageView5" />
 
 </RelativeLayout>
