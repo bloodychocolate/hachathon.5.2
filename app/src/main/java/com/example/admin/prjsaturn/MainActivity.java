@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     rootView = inflater.inflate(R.layout.fragment_task, container, false);
                     break;
                 case 6:
-                    rootView = inflater.inflate(R.layout.fragment_administration, container, false);
+                    rootView = inflater.inflate(R.layout.fragment_administrato, container, false);
                     break;
 
 
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 case 4:
                     return "Group4";
                 case 5:
-                    return "Administation";
+                    return "Administrator";
             }
             return null;
         }
