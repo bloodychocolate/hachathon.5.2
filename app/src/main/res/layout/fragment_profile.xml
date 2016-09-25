@@ -93,17 +93,6 @@
         android:textStyle="normal|bold" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Злодеюс. У. Г."
-        android:textSize="18sp"
-        android:layout_alignBaseline="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,18 +110,6 @@
         android:text="19"
         android:textSize="18sp"
         android:layout_alignTop="@+id/textView8"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/fff"
-        android:text="Новый Батл"
-        android:textColor="@android:color/background_light"
-        android:textSize="23sp"
-        android:layout_above="@+id/scrollView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -159,6 +136,31 @@
 
         </TableLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/fff"
+        android:text="Новый Батл"
+        android:layout_alignBaseline="@+id/textView13"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Злодеюс. У. Г."
+        android:textSize="18sp"
+        android:layout_above="@+id/textView8"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 </RelativeLayout>
 
 

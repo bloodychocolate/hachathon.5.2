@@ -8,16 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:text="Премиальные пользователям"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView9"
-            android:layout_alignLeft="@+id/textView9"
-            android:layout_alignStart="@+id/textView9"
-            android:layout_marginTop="19dp"
-            android:id="@+id/button4" />
-
         <TextView
             android:text="Администрирование"
             android:layout_width="wrap_content"
@@ -30,16 +20,6 @@
             android:layout_marginTop="30dp"
             android:id="@+id/textView9"
             android:textSize="25sp" />
-
-        <Button
-            android:text="Квесты"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:id="@+id/button"
-            android:layout_below="@+id/button3"
-            android:layout_alignLeft="@+id/button3"
-            android:layout_alignStart="@+id/button3" />
 
         <Button
             android:text="Батлы между сотрудниками"
@@ -59,5 +39,25 @@
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/button4"
             android:layout_toEndOf="@+id/button4" />
+
+        <Button
+            android:text="Премиальные пользователям"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/button4"
+            android:layout_below="@+id/textView9"
+            android:layout_alignLeft="@+id/textView9"
+            android:layout_alignStart="@+id/textView9" />
+
+        <Button
+            android:text="Квесты"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:id="@+id/button"
+            android:layout_below="@+id/button3"
+            android:layout_alignLeft="@+id/button3"
+            android:layout_alignStart="@+id/button3" />
     </RelativeLayout>
 </LinearLayout>
