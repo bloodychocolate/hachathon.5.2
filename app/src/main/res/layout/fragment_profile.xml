@@ -62,7 +62,7 @@
         android:layout_alignStart="@+id/textView" />
 
     <TextView
-        android:text="Недостойное упоминания"
+        android:text="19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView8"

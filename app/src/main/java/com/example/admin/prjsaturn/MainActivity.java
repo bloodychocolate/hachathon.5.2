@@ -115,17 +115,18 @@ public class MainActivity extends AppCompatActivity {
                     rootView = inflater.inflate(R.layout.fragment_profile, container, false);
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.fragment_group, container, false);
-                    break;
-                case 3:
-                    rootView = inflater.inflate(R.layout.fragment_task, container, false);
-                    break;
-                case 4:
                     rootView = inflater.inflate(R.layout.fragment_group1, container, false);
                     break;
-                case 5:
-                    rootView = inflater.inflate(R.layout.fragment_group4, container, false);
+                case 3:
+                    rootView = inflater.inflate(R.layout.fragment_prodazh, container, false);
                     break;
+                case 4:
+                    rootView = inflater.inflate(R.layout.fragment_group, container, false);
+                    break;
+                case 5:
+                    rootView = inflater.inflate(R.layout.fragment_task, container, false);
+                    break;
+
 
             }
             return rootView;
@@ -151,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 6 total pages.
-            return 6;
+            // Show 5 total pages.
+            return 5;
         }
 
         @Override
@@ -161,14 +162,12 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Profile";
                 case 1:
-                    return "Quests";
-                case 2:
                     return "Group1";
-                case 3:
+                case 2:
                     return "Group2";
-                case 4:
+                case 3:
                     return "Group3";
-                case 5:
+                case 4:
                     return "Group4";
             }
             return null;
