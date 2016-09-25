@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 case 5:
                     rootView = inflater.inflate(R.layout.fragment_task, container, false);
                     break;
+                case 6:
+                    rootView = inflater.inflate(R.layout.fragment_administration, container, false);
+                    break;
 
 
             }
@@ -152,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 5 total pages.
-            return 5;
+            // Show 6 total pages.
+            return 6;
         }
 
         @Override
@@ -169,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                     return "Group3";
                 case 4:
                     return "Group4";
+                case 5:
+                    return "Administation";
             }
             return null;
         }
