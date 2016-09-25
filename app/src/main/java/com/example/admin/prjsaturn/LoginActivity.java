@@ -309,7 +309,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Gson gson  = gsonBuilder.create();
 
                 String resp = convertStreamToString(response);
-                resp = resp.substring(1,resp.length()-1);
+                resp = resp.substring(12,resp.length()-1);
                 User user = gson.fromJson(resp, User.class);
 
                 Globals appState = ((Globals)getApplicationContext());
