@@ -1,5 +1,6 @@
 package com.example.admin.prjsaturn;
 
+import android.app.Activity;
 import android.app.Application;
 
 /**
@@ -10,6 +11,8 @@ public class Globals extends Application {
     private User local_user;
     private String username;
     private String password;
+
+    public MainActivity activ;
 
     public void setLocalUser(User user){this.local_user = user;}
     public User getLocalUser(){return this.local_user;}

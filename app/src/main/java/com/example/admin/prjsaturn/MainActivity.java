@@ -1,6 +1,7 @@
 package com.example.admin.prjsaturn;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +20,17 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
+public class MainActivity extends AppCompatActivity {
+    User locUs;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -55,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
+        Globals appState = ((Globals) getApplicationContext());
+        locUs = appState.getLocalUser();
+        appState.activ = this;
 
+
+
+        View.OnClickListener oclBtnOk = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        };
     }
 
 
@@ -63,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         return true;
+    }
+
+    public void callbackLoad() {
+        Globals appState = ((Globals) getApplicationContext());
+        locUs = appState.getLocalUser();
+
+        TextView myTextView = (TextView) findViewById(R.id.textView2);
+        myTextView.setText(locUs.getName());
+    }
+
+    public void callbackGet(InputStream Response) {
+
     }
 
     @Override
@@ -78,6 +109,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class GetAccessTask extends AsyncTask<Void, Void, Boolean> {
+        private String url;
+        private String query;
+
+        String convertStreamToString(java.io.InputStream is) {
+            java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+            return s.hasNext() ? s.next() : "";
+        }
+
+        GetAccessTask(String url, String query) {
+            this.url = url;
+            this.query = query;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            String charset = "UTF-8";
+
+            URLConnection connection;
+            InputStream response;
+            try {
+                connection = new URL(url + "?" + query).openConnection();
+                connection.setRequestProperty("Accept-Charset", charset);
+                response = connection.getInputStream();
+
+                Globals appState = ((Globals)getApplicationContext());
+                appState.activ.callbackGet(response);
+            }catch(java.io.IOException e){};
+            return true;
+        }
     }
 
     /**
@@ -108,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             int sNum = getArguments().getInt(ARG_SECTION_NUMBER);
             View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
             switch (sNum) {
@@ -179,3 +243,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+
