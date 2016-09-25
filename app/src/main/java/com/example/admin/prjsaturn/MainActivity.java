@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+<<<<<<< HEAD
         Globals appState = ((Globals) getApplicationContext());
         locUs = appState.getLocalUser();
         appState.activ = this;
@@ -88,7 +89,12 @@ public class MainActivity extends AppCompatActivity {
     String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+=======
+
+
+>>>>>>> parent of 6e6307b... -
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
