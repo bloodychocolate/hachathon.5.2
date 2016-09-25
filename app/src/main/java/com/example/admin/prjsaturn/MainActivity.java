@@ -120,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_task, container, false);
                     break;
+                case 4:
+                    rootView = inflater.inflate(R.layout.fragment_group1, container, false);
+                    break;
+                case 5:
+                    rootView = inflater.inflate(R.layout.fragment_group4, container, false);
+                    break;
+
             }
             return rootView;
         }
@@ -144,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 6 total pages.
+            return 6;
         }
 
         @Override
@@ -154,9 +161,15 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Profile";
                 case 1:
-                    return "Group";
+                    return "Quests";
                 case 2:
-                    return "Task";
+                    return "Group1";
+                case 3:
+                    return "Group2";
+                case 4:
+                    return "Group3";
+                case 5:
+                    return "Group4";
             }
             return null;
         }
