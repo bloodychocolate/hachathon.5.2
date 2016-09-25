@@ -153,8 +153,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -272,7 +270,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -282,7 +279,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mEmail;
         private final String mPassword;
 
-
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -291,7 +287,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             String url = "http://projectsaturn.tk.host1512310.serv66.hostland.pro/api.php";
-            String charset = "UTF-16";
+            String charset = "UTF-8";
 
             String query = String.format("login=%s&pass=%s&method=getUserInfo",
                     mEmail,
@@ -309,11 +305,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Gson gson  = gsonBuilder.create();
 
                 String resp = convertStreamToString(response);
-                resp = resp.substring(1,resp.length()-1);
+                resp = resp.substring(12,resp.length()-1);
                 User user = gson.fromJson(resp, User.class);
 
                 Globals appState = ((Globals)getApplicationContext());
                 appState.setLocalUser(user);
+
+                appState.activ.callbackLoad();
             }catch(java.io.IOException e){};
 
 
