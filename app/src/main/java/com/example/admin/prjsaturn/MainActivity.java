@@ -18,19 +18,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
 public class MainActivity extends AppCompatActivity {
     User locUs;
+    String ResponseString;
+    String urlhost = "http://projectsaturn.tk.host1512310.serv66.hostland.pro";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -62,21 +69,26 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-
         Globals appState = ((Globals) getApplicationContext());
         locUs = appState.getLocalUser();
         appState.activ = this;
 
-
-
-        View.OnClickListener oclBtnOk = new View.OnClickListener() {
+        View.OnClickListener oclBtnAddPrem = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String frm = String.format("q=%s&method=getIdByLogin", "hello");
+                GetAccessTask tsk = new GetAccessTask(urlhost, frm, 1);
             }
         };
+
+        Button btn = (Button)findViewById(R.id.button4);
+        btn.setOnClickListener(oclBtnAddPrem);
     }
 
+    String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,12 +100,47 @@ public class MainActivity extends AppCompatActivity {
         Globals appState = ((Globals) getApplicationContext());
         locUs = appState.getLocalUser();
 
-        TextView myTextView = (TextView) findViewById(R.id.textView2);
-        myTextView.setText(locUs.getName());
+        TextView name = (TextView) findViewById(R.id.textView2);
+        name.setText(locUs.getName());
+
+        TextView group = (TextView) findViewById(R.id.textView6);
+        String gp = "";
+        switch(locUs.getGroup())
+        {
+            case 1:
+                gp = "Группа активных продаж";
+                break;
+            case 2:
+                gp = "Группа продаж и обслуживания";
+                break;
+            case 3:
+                gp = "Группа по работе с К.К.М";
+                break;
+            case 4:
+                gp = "Группа по работе с Г.К.М";
+                break;
+        }
+        group.setText(gp);
+
+        TextView XP = (TextView) findViewById(R.id.textView15);
+        XP.setText(locUs.getXp());
     }
 
-    public void callbackGet(InputStream Response) {
+    public void callbackGet(int id, InputStream Response) {
+        String ResponseString = convertStreamToString(Response);
+        JsonParser pr = new JsonParser();
+        switch(id)
+        {
+            case 1:
+                JsonElement elem = pr.parse(ResponseString);
+                JsonObject obj = elem.getAsJsonObject();
+                JsonElement resp = obj.get("response");
+                this.ResponseString = resp.getAsString();
 
+                break;
+            case 2:
+                //JsonElement elem
+        }
     }
 
     @Override
@@ -114,15 +161,17 @@ public class MainActivity extends AppCompatActivity {
     class GetAccessTask extends AsyncTask<Void, Void, Boolean> {
         private String url;
         private String query;
+        private int id;
 
         String convertStreamToString(java.io.InputStream is) {
             java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
             return s.hasNext() ? s.next() : "";
         }
 
-        GetAccessTask(String url, String query) {
+        GetAccessTask(String url, String query, int id) {
             this.url = url;
             this.query = query;
+            this.id = id;
         }
 
         @Override
@@ -137,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 response = connection.getInputStream();
 
                 Globals appState = ((Globals)getApplicationContext());
-                appState.activ.callbackGet(response);
+                appState.activ.callbackGet(id, response);
             }catch(java.io.IOException e){};
             return true;
         }
@@ -191,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                     rootView = inflater.inflate(R.layout.fragment_task, container, false);
                     break;
                 case 6:
-                    rootView = inflater.inflate(R.layout.fragment_administration, container, false);
+                    rootView = inflater.inflate(R.layout.fragment_admin, container, false);
                     break;
 
 
@@ -237,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
                 case 4:
                     return "Group4";
                 case 5:
-                    return "Administation";
+                    return "Admin";
             }
             return null;
         }
