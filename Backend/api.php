@@ -136,7 +136,7 @@ switch ($method) {
 		$query = mysql_query("DELETE FROM quests WHERE quest_id = '$q_id'");
 		json_return('"0"');
 		break;
-	case 'changeUserIncome':
+	case 'changeIncome':
 		if (!$is_admin)
 			json_err(2,'Permission denied!');
 		if (!isset($_GET['id']))
