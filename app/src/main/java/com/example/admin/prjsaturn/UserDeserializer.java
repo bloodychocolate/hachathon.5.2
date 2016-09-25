@@ -23,7 +23,7 @@ public class UserDeserializer implements JsonDeserializer<User> {
         JsonElement xp = jsonObject.get("xp");
         JsonElement newClients = jsonObject.get("new_clients");
         JsonElement isAdmin = jsonObject.get("is_admin");
-        JsonElement group = jsonObject.get("group");
+        JsonElement group = jsonObject.get("in_team");
 
         final User user = new User();
         user.setUserId(User_id.getAsInt());

@@ -308,8 +308,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 gsonBuilder.registerTypeAdapter(User.class, new UserDeserializer());
                 Gson gson  = gsonBuilder.create();
 
-                Reader reader = new InputStreamReader(response, "UTF-8");
-                User user = gson.fromJson(reader, User.class);
+                String resp = convertStreamToString(response);
+                resp = resp.substring(1,resp.length()-1);
+                User user = gson.fromJson(resp, User.class);
 
                 Globals appState = ((Globals)getApplicationContext());
                 appState.setLocalUser(user);
